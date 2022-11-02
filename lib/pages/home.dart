@@ -1,4 +1,7 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_element
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_element, avoid_unnecessary_containers
+import 'dart:ffi';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class Rate {
@@ -17,6 +20,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // ignore: dead_code
   int rate = 0;
+  bool _isActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -102,12 +106,13 @@ class _HomeState extends State<Home> {
                         if (rate == 1) {
                           setState(() {
                             rate = 0;
+                            _isActive = false;
                           });
                         } else {
                           setState(() {
                             rate = 1;
+                            _isActive = true;
                           });
-                          print(rate);
                         }
                       },
                       child: Container(
@@ -126,10 +131,15 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(18, 20, 23, 1),
-                        ),
+                        decoration: rate != 1
+                            ? BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(18, 20, 23, 1),
+                              )
+                            : BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
                       ),
                     ),
                     InkWell(
@@ -160,73 +170,132 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(18, 20, 23, 1),
-                        ),
+                        decoration: rate != 2
+                            ? BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(18, 20, 23, 1),
+                              )
+                            : BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
                       ),
                     ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                        child: Text(
-                          '3',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromARGB(158, 255, 255, 255),
-                            fontSize: 23,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
+                    InkWell(
+                      onTap: () {
+                        if (rate == 3) {
+                          setState(() {
+                            rate = 0;
+                          });
+                        } else {
+                          setState(() {
+                            rate = 3;
+                          });
+                        }
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          child: Text(
+                            '3',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color.fromARGB(158, 255, 255, 255),
+                              fontSize: 23,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                            ),
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(18, 20, 23, 1),
+                        decoration: rate != 3
+                            ? BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(18, 20, 23, 1),
+                              )
+                            : BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
                       ),
                     ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                        child: Text(
-                          '4',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromARGB(158, 255, 255, 255),
-                            fontSize: 23,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
+                    InkWell(
+                      onTap: () {
+                        if (rate == 4) {
+                          setState(() {
+                            rate = 0;
+                          });
+                        } else {
+                          setState(() {
+                            rate = 4;
+                          });
+                        }
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          child: Text(
+                            '4',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color.fromARGB(158, 255, 255, 255),
+                              fontSize: 23,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                            ),
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(18, 20, 23, 1),
+                        decoration: rate != 4
+                            ? BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(18, 20, 23, 1),
+                              )
+                            : BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
                       ),
                     ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                        child: Text(
-                          '5',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromARGB(158, 255, 255, 255),
-                            fontSize: 23,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
+                    InkWell(
+                      onTap: () {
+                        if (rate == 5) {
+                          setState(() {
+                            rate = 0;
+                          });
+                        } else {
+                          setState(() {
+                            rate = 5;
+                          });
+                        }
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          child: Text(
+                            '5',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color.fromARGB(158, 255, 255, 255),
+                              fontSize: 23,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                            ),
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(18, 20, 23, 1),
+                        decoration: rate != 5
+                            ? BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(18, 20, 23, 1),
+                              )
+                            : BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.orange,
+                              ),
                       ),
                     ),
                   ],
@@ -283,9 +352,56 @@ class Submit extends StatelessWidget {
           color: Color.fromRGBO(37, 45, 55, 1),
           // padding: EdgeInsets.fromLTRB(, top, right, bottom),
           margin: EdgeInsets.all(10),
-          child: Text(
-            'welcome $rate',
-            style: TextStyle(color: Colors.white),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Image.asset(
+                "images/Screenshot.png",
+                width: 100,
+                height: 70,
+              ),
+              SizedBox(height: 10),
+              Container(
+                height: 40,
+                padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+                child: Text(
+                  "You selected $rate out of 5",
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 21,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: Color.fromARGB(52, 0, 0, 0),
+                  borderRadius: BorderRadius.circular(28.0),
+                  // borderRadius: Radius.circular(10, 10)
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Thank you',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 27,
+                  fontWeight: FontWeight.w800,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                "We appreciate you taking the time to give a rating. if you ever need more support, don't hesitate to get in touch.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color.fromARGB(113, 255, 255, 255),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                  fontStyle: FontStyle.normal,
+                ),
+              ),
+            ],
           ),
         ),
       )),
