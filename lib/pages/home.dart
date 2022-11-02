@@ -1,9 +1,22 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_element
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Rate {
+  final int rate;
+
+  const Rate(this.rate);
+}
+
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   // ignore: dead_code
+  int rate = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -84,33 +97,52 @@ class Home extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Container(
-                      width: 40,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
-                        child: Text(
-                          '1',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromARGB(158, 255, 255, 255),
-                            fontSize: 23,
-                            fontWeight: FontWeight.w600,
-                            fontStyle: FontStyle.normal,
+                    InkWell(
+                      onTap: () {
+                        if (rate == 1) {
+                          setState(() {
+                            rate = 0;
+                          });
+                        } else {
+                          setState(() {
+                            rate = 1;
+                          });
+                          print(rate);
+                        }
+                      },
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 7, 0, 0),
+                          child: Text(
+                            '1',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color.fromARGB(158, 255, 255, 255),
+                              fontSize: 23,
+                              fontWeight: FontWeight.w600,
+                              fontStyle: FontStyle.normal,
+                            ),
                           ),
                         ),
-                      ),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Color.fromRGBO(18, 20, 23, 1),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromRGBO(18, 20, 23, 1),
+                        ),
                       ),
                     ),
                     InkWell(
                       onTap: () {
-                        print("object 11");
-                      },
-                      onDoubleTap: () {
-                        print("object");
+                        if (rate == 2) {
+                          setState(() {
+                            rate = 0;
+                          });
+                        } else {
+                          setState(() {
+                            rate = 2;
+                          });
+                        }
                       },
                       child: Container(
                         width: 40,
@@ -204,7 +236,12 @@ class Home extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      // Navigator.pushNamed(context, '/submit');
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => Submit(
+                                    rate: rate,
+                                  ))));
                     },
                     style: ButtonStyle(
                       backgroundColor:
@@ -224,6 +261,33 @@ class Home extends StatelessWidget {
                     )),
               ],
             )),
+      )),
+    );
+  }
+}
+
+class Submit extends StatelessWidget {
+  const Submit({super.key, required this.rate});
+
+  final int rate;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(18, 20, 23, 1),
+      body: Center(
+          child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(40)),
+        child: Container(
+          width: 600,
+          height: 300,
+          color: Color.fromRGBO(37, 45, 55, 1),
+          // padding: EdgeInsets.fromLTRB(, top, right, bottom),
+          margin: EdgeInsets.all(10),
+          child: Text(
+            'welcome $rate',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       )),
     );
   }
